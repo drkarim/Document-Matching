@@ -1,3 +1,13 @@
+'''
+    Class Bill
+
+    A Bill is a document scan of a bill or an invoice
+
+    Author: Rashed Karim
+    Year: 2019
+
+'''
+
 import imutils
 import numpy as np
 import pandas as pd

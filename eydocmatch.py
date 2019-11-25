@@ -1,3 +1,11 @@
+'''
+    Test Stub for Document Matching Algorithms
+
+    Author: Rashed Karim
+    Year: 2019
+
+'''
+
 import argparse
 import os
 
