@@ -21,11 +21,17 @@ class Bills:
         if 'angle' in transform_param:
             angle = int(transform_param['angle'])
 
+        elif 'gamma' in transform_param:
+            gamma = int(transform_param['gamma'])
+
         if which_transform == 'rotate':
             self.image_transform = imutils.rotate(self.image, angle)
 
         elif which_transform == 'rotate_bound':
             self.image_transform = imutils.rotate_bound(self.image, angle)
+
+        elif which_transform == 'gamma':
+            self.image_transform = self.adjust_gamma(self.image, gamma)
 
 
     def write_doc(self, which_doc, write_path):
@@ -52,3 +58,12 @@ class Bills:
     def append_num_to_filename(self, filename, num):
         name, ext = os.path.splitext(filename)
         return "{name}_{uid}{ext}".format(name=name, uid=num, ext=ext)
+
+    # https://stackoverflow.com/questions/33322488/how-to-change-image-illumination-in-opencv-python
+    def adjust_gamma(self, image, gamma=1.0):
+
+        invGamma = 1.0 / gamma
+        table = np.array([((i / 255.0) ** invGamma) * 255
+                          for i in np.arange(0, 256)]).astype("uint8")
+
+        return cv2.LUT(image, table)
