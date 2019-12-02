@@ -55,7 +55,7 @@ if 'transformation' in args and 'amount' in args:
         which_transform = args['transformation']
         fn_append = 0           # what to append to filename to indicate the transformation, for example filename_0.png for 0 rotation
 
-        if which_transform == 'rotate':
+        if which_transform == 'rotate' or which_transform == 'rotate_bound':
             rotate_angle = args['amount']
             transform_param = dict()
             transform_param['angle'] = rotate_angle
